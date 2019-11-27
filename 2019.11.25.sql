@@ -141,3 +141,39 @@ SELECT ADD_MONTHS(TO_DATE('20191125', 'YYYYMMDD'), 5) NOW_AFTER5M,
 FROM dual;
 
 SELECT NEXT_DAY(SYSDATE, 1) FROM dual --오늘 날짜(2019/11/25)일 이후에 등장하는 첫번째 토요일
+
+--COALESCE(expr1, expr2, expr3.....)
+--인자중에 첫번째로 등장하는 NULL이 아닌 exprN을 리턴
+SELECT empno, ename, MGR, NVL(MGR, 9999) MGR_N,
+       NVL2(MGR, MGR, 9999) MGR_1,
+       COALESCE(MGR, NVL(MGR, 9999)) MGR_N_2 FROM emp;
+
+SELECT userid, usernm,reg_dt, NVL(reg_dt, SYSDATE) N_REG_DT FROM users WHERE userid != 'brown';
+
+--condition
+--case
+--emp.job 컬럼을 기준으로
+--'SALESMAN'이면 sal * 1.05를 적용한 값 리턴
+--'SALSENAM'이면 sal * 1.10를 적용한 값 리턴
+--'PRESIDENT'이면 sal * 1.20를 적용한 값 리턴
+--empno, ename, job, sal 요율 적용한 급여
+--위 세가지 직군이 아닐경우 sal리턴
+SELECT empno, ename, job, sal, 
+    CASE 
+        WHEN job = 'SALESMAN' THEN sal * 1.05
+        WHEN job = 'MANAGER' THEN sal * 1.10
+        WHEN job = 'PRESIDENT' THEN sal * 1.20
+        ELSE sal
+    END bonus,
+    comm,
+    CASE 
+        WHEN comm IS NULL THEN -10
+        ELSE comm
+    END case_null
+    FROM emp;
+    
+--DECODE
+SELECT empno, ename, sal, job,
+       DECODE(job, 'SALESMAN', sal*1.05, 'MANAGER', sal*1.10, 'PRESIDENT', sal*1.20, sal) bonus
+FROM emp;
+       
