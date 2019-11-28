@@ -1,7 +1,7 @@
-row_1 : emp 테이블에서 정렬없이 조회하고, ROWNUM이 1~10인 행만 조회
+--row_1 : emp 테이블에서 정렬없이 조회하고, ROWNUM이 1~10인 행만 조회
 SELECT ROWNUM, empno, ename FROM emp WHERE ROWNUM BETWEEN 1 AND 10; 
 
-row_2 : emp 테이블에서 정렬없이 조회하고, ROWNUM이 11~14인 행만 조회
+--row_2 : emp 테이블에서 정렬없이 조회하고, ROWNUM이 11~14인 행만 조회
 SELECT ROWNUM,  A.* FROM (SELECT ROWNUM rn, empno, ename FROM emp) A WHERE rn BETWEEN 11 AND 14; 
 
 --row_3 : emp 테이블에서 ename컬럼 기준으로 오름차순 정렬 했을때 11~14번째 행의 데이터만 조회하는 sql을 작성하세요.
