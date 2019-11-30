@@ -117,7 +117,7 @@ SELECT COUNT(*), COUNT(deptno), COUNT(loc)
 FROM dept;
 
 SELECT
-COUNT(COUNT(deptno)) cnt 
+deptno 
  FROM emp 
  GROUP BY deptno;
  
