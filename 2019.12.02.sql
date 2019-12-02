@@ -60,13 +60,17 @@ RIGHT OUTER JOIN prod p ON(a.buy_prod=p.prod_id);
 
 SELECT * FROM cycle;
 SELECT * FROM product;
+SELECT * FROM customer;
 
-SELECT c.pid, p.pnm, DECODE(c.cid,2, 1, 1, 1, 3, 1), c.day, c.cnt  
+SELECT p.pid, p.pnm, NVL(c.cid, 1) cid, NVL(c.day, 0) day, NVL(c.cnt,0) cnt  
 FROM cycle c 
-JOIN product p ON c.pid = p.pid
-WHERE c.cid=1
+RIGHT OUTER JOIN product p ON c.pid = p.pid AND c.cid=1
 ;
 
-
+SELECT p.pid, p.pnm, NVL(c.cid, 1), NVL(c.day, 0), NVL(c.cnt,0), NVL(c2.cnm, 'brown')  
+FROM cycle c 
+RIGHT OUTER JOIN product p ON c.pid = p.pid AND c.cid=1
+LEFT OUTER JOIN customer c2 ON c2.cid=c.cid
+;
 
 SELECT * FROM prod;
