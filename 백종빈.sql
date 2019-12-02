@@ -38,3 +38,5 @@ SELECT * FROM countries;
 SELECT * FROM locations;
 SELECT * FROM departments;
 SELECT * FROM employees;
+
+
