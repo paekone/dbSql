@@ -66,7 +66,7 @@ SELECT p.pid, p.pnm, NVL(c.cid, 1) cid, NVL(c.day, 0) day, NVL(c.cnt,0) cnt
 FROM cycle c 
 RIGHT OUTER JOIN product p ON c.pid = p.pid AND c.cid=1
 ;
-
+--5
 SELECT p.pid, p.pnm, NVL(c.cid, 1), NVL(c.day, 0), NVL(c.cnt,0), NVL(c2.cnm, 'brown')  
 FROM cycle c 
 RIGHT OUTER JOIN product p ON c.pid = p.pid AND c.cid=1
